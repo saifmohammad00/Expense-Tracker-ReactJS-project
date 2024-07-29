@@ -29,8 +29,29 @@ const Welcome = (props) => {
             const data = await res.json();
             console.log(data);
         }catch(error){
-            console.log("message",error);
+            console.log(error)
         }
+    }
+    if(isClicked && props.newToken){
+        async function getData(){
+            try{
+                const res=await fetch('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyCXKI5qRh1s9g_dLCgL3tyX-iJlbC8uGaI',{
+                    method:"POST",
+                    body:JSON.stringify({
+                        idToken:props.newToken,
+                    }),
+                    headers:{
+                        'Content-Type':'application/json',
+                    }
+                })
+                const data=await res.json();
+                handleName.current.value=data.users[0].displayName;
+                handleUrl.current.value=data.users[0].photoUrl;
+            }catch(error){
+                console.log(error);
+            }
+        }
+        getData();
     }
     return <>
         {!isClicked && <div>

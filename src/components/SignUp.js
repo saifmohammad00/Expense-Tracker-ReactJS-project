@@ -50,7 +50,7 @@ const SignUp = () => {
                 setToken(data.idToken);
             }
         } catch (error) {
-            console.log(error.message);
+            alert(error.message)
         }
 
     }
