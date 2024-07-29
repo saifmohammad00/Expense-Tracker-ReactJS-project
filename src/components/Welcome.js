@@ -53,11 +53,32 @@ const Welcome = (props) => {
         }
         getData();
     }
+    const handleVerify=async()=>{
+       try{
+        const res=await fetch('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyCXKI5qRh1s9g_dLCgL3tyX-iJlbC8uGaI',{
+            method:"POST",
+            body:JSON.stringify({
+                requestType:"VERIFY_EMAIL",
+                idToken:props.newToken,
+            }),
+            headers:{
+                'Content-Type':'application/json',
+            }
+           })
+           const data=await res.json();
+           console.log(data);
+       }catch(error){
+        console.log(error);
+       }
+    }
     return <>
         {!isClicked && <div>
+            <div className={classes.welcome}>
             <h1>Welcome to Expense Tracker!!!</h1>
             <p>Your profile is incomplete <button onClick={handleButton}>complete now</button></p>
+            </div>
             <hr />
+            <button onClick={handleVerify}>Verify Email Id</button>
         </div>}
         {isClicked && <div>
             <h1>Winners never quit,Quitters never win.</h1>

@@ -14,7 +14,8 @@
     padding: 8px;
 }
 
-.contact button {
+.contact button,
+button {
     margin-bottom: 10px;
     width: 200px;
     height: 40px;
@@ -25,4 +26,8 @@
 
 .contact button:hover {
     background-color: #8e9297;
+}
+.welcome{
+    display: flex;
+    justify-content: space-between;
 }
