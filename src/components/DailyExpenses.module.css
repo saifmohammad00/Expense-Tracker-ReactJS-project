@@ -1,0 +1,35 @@
+.exForm {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 10px auto;
+    align-items: center;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
+}
+
+.exForm input {
+    width: 200px;
+    height: 20px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    padding: 8px;
+}
+
+.exForm button {
+    margin-bottom: 10px;
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #19dde7;
+    cursor: pointer;
+}
+
+.exForm button:hover {
+    background-color: #8e9297;
+}
+.cont h1{
+    text-align: center;
+}
+.list span{
+    margin-right: 10px;
+}

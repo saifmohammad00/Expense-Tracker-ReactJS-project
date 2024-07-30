@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import classes from "./Welcome.module.css"
 import { useNavigate } from "react-router-dom";
-const apiKey="AIzaSyClRDO48bvo-eER80KLWlTUETfj7bxpBME";
+import DailyExpenses from "./DailyExpenses";
+const apiKey="AIzaSyBgAF4ni8v_ZfJE-8v7G2BS8RGTL36rRZw";
 const Welcome = (props) => {
     const [isClicked, setIsClicked] = useState(false);
     const handleName = useRef();
@@ -88,6 +89,7 @@ const Welcome = (props) => {
             <button type="button" onClick={handleLogout} >Logout</button>
             <hr />
             <button onClick={handleVerify} type="button">Verify Email Id</button>
+            <DailyExpenses/>
         </div>}
         {isClicked && <div>
             <h1>Winners never quit,Quitters never win.</h1>

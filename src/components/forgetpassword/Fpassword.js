@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import classes from "./Fpassword.module.css"
 import { useRef } from "react";
 import Header from "../Header";
-const apiKey="AIzaSyClRDO48bvo-eER80KLWlTUETfj7bxpBME";
+const apiKey="AIzaSyBgAF4ni8v_ZfJE-8v7G2BS8RGTL36rRZw";
 const Fpassword=()=>{
     const enteredEmail=useRef();
     const handleFpass=async(event)=>{

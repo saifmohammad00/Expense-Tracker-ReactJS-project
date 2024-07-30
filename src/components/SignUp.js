@@ -3,7 +3,7 @@ import classes from "./SignUp.module.css";
 import Header from "./Header";
 import Welcome from "./Welcome";
 import { Link } from "react-router-dom";
-const apiKey="AIzaSyClRDO48bvo-eER80KLWlTUETfj7bxpBME";
+const apiKey="AIzaSyBgAF4ni8v_ZfJE-8v7G2BS8RGTL36rRZw";
 const SignUp = () => {
     const [isLogged, setIsLogged] = useState(false);
     const [isAuthenticated,setIsAuthentication]=useState(false);
