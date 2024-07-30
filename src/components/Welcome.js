@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import classes from "./Welcome.module.css"
 import { useNavigate } from "react-router-dom";
-
+const apiKey="AIzaSyClRDO48bvo-eER80KLWlTUETfj7bxpBME";
 const Welcome = (props) => {
     const [isClicked, setIsClicked] = useState(false);
     const handleName = useRef();
@@ -11,7 +11,7 @@ const Welcome = (props) => {
     }
     const handleUpdate = async (event) => {
         try {
-            const res = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyD5AMUtW9NRrx8uc9ZuGaGy6U5UKayDOag', {
+            const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:update?key=${apiKey}`, {
                 method: "POST",
                 body: JSON.stringify({
                     idToken: props.newToken,
@@ -37,7 +37,7 @@ const Welcome = (props) => {
         if (isClicked && props.newToken) {
             async function getData() {
                 try {
-                    const res = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyD5AMUtW9NRrx8uc9ZuGaGy6U5UKayDOag', {
+                    const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${apiKey}`, {
                         method: "POST",
                         body: JSON.stringify({
                             idToken: props.newToken,
@@ -58,7 +58,7 @@ const Welcome = (props) => {
     }, [isClicked,props.newToken])
     const handleVerify = async () => {
         try {
-            const res = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=AIzaSyD5AMUtW9NRrx8uc9ZuGaGy6U5UKayDOag', {
+            const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${apiKey}`, {
                 method: "POST",
                 body: JSON.stringify({
                     requestType: "VERIFY_EMAIL",

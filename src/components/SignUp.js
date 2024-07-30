@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import classes from "./SignUp.module.css";
 import Header from "./Header";
 import Welcome from "./Welcome";
+import { Link } from "react-router-dom";
+const apiKey="AIzaSyClRDO48bvo-eER80KLWlTUETfj7bxpBME";
 const SignUp = () => {
     const [isLogged, setIsLogged] = useState(false);
     const [isAuthenticated,setIsAuthentication]=useState(false);
@@ -13,14 +15,14 @@ const SignUp = () => {
         event.preventDefault();
         let url="";
         if (isLogged) {
-            url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD5AMUtW9NRrx8uc9ZuGaGy6U5UKayDOag';
+            url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${apiKey}`;
         }
         else {
             if (handleCpass.current.value !== handlePass.current.value) {
                 alert("Passwords dont match");
                 return;
             }
-            url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD5AMUtW9NRrx8uc9ZuGaGy6U5UKayDOag';
+            url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${apiKey}`;
         }
         try {
             const response = await fetch(url, {
@@ -65,8 +67,9 @@ const SignUp = () => {
             <input type="email" id="email" placeholder="Email" ref={handleEmail} required />
             <input type="password" id="pass" placeholder="Password" ref={handlePass} required />
             {!isLogged && <input type="password" id="cpass" placeholder="Confirm Password" ref={handleCpass} required />}
+            <Link to="/fp" style={{marginBottom:"10px"}}>Forget password?</Link>
             <button>{!isLogged ? "Sign Up" : "Login"}</button>
-            <button type="button" onClick={() => setIsLogged(!isLogged)}>{!isLogged ? "Already Have an Account?Login" : "Back to Create Account"}</button>
+            <button type="button" onClick={() => setIsLogged(!isLogged)}>{!isLogged ? "Already Have an Account?Login" : "New User? Sign Up"}</button>
         </form></>)}
     </>
 }
