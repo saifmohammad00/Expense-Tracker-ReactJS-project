@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import classes from "./Welcome.module.css"
 import { useNavigate } from "react-router-dom";
 import DailyExpenses from "./DailyExpenses";
-const apiKey="AIzaSyBgAF4ni8v_ZfJE-8v7G2BS8RGTL36rRZw";
+const apiKey="";
 const Welcome = (props) => {
     const [isClicked, setIsClicked] = useState(false);
     const handleName = useRef();
