@@ -5,7 +5,7 @@ import Welcome from "./Welcome";
 const SignUp = () => {
     const [isLogged, setIsLogged] = useState(false);
     const [isAuthenticated,setIsAuthentication]=useState(false);
-    const [token,setToken]=useState("");
+    const [token,setToken]=useState(null);
     const handleEmail = useRef();
     const handlePass = useRef();
     const handleCpass = useRef();
@@ -13,14 +13,14 @@ const SignUp = () => {
         event.preventDefault();
         let url="";
         if (isLogged) {
-            url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCXKI5qRh1s9g_dLCgL3tyX-iJlbC8uGaI';
+            url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyD5AMUtW9NRrx8uc9ZuGaGy6U5UKayDOag';
         }
         else {
             if (handleCpass.current.value !== handlePass.current.value) {
                 alert("Passwords dont match");
                 return;
             }
-            url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCXKI5qRh1s9g_dLCgL3tyX-iJlbC8uGaI';
+            url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyD5AMUtW9NRrx8uc9ZuGaGy6U5UKayDOag';
         }
         try {
             const response = await fetch(url, {
@@ -54,8 +54,12 @@ const SignUp = () => {
         }
 
     }
+    const handleToken=(value)=>{
+        setToken(value);
+        setIsAuthentication(false);
+    }
     return <>
-        {isAuthenticated ? <Welcome newToken={token}/>: (<><Header/>
+        {isAuthenticated ? <Welcome newToken={token} settkn={handleToken}/>: (<><Header/>
             <form className={classes.sign} onSubmit={handleSubmit}>
             <h1>Sign Up</h1>
             <input type="email" id="email" placeholder="Email" ref={handleEmail} required />
