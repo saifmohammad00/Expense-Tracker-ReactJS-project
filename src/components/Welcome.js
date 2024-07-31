@@ -79,12 +79,12 @@ const Welcome = () => {
         }
     }
     
-    return <>
+    return <div className={classes.bheader}>
         {!isClicked && <div>
             <div className={classes.welcome}>
                 <h1>Welcome to Expense Tracker!!!</h1>
                 <p>Your profile is incomplete <button onClick={handleButton}>complete now</button></p>
-                <button onClick={handleVerify} type="button">Verify Email Id</button>
+                <p><button onClick={handleVerify} type="button">Verify Email Id</button></p>
             </div>
             <hr />
             <DailyExpenses/>
@@ -101,6 +101,6 @@ const Welcome = () => {
                 <button onClick={handleUpdate} type="button">Update</button>
             </form>
         </div>}
-    </>
+    </div>
 }
 export default Welcome;

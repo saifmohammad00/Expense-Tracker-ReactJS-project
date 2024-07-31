@@ -6,8 +6,20 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+body.light {
+  background-color: #ffffff; /* Light theme background color */
+  color: #000000; /* Light theme text color */
+  /* Add other light theme styles */
+}
+
+body.dark {
+  background-color: #000000; /* Dark theme background color */
+  color: #ffffff; /* Dark theme text color */
+  /* Add other dark theme styles */
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+

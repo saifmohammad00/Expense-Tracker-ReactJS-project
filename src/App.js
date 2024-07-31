@@ -3,12 +3,17 @@ import SignUp from "./components/SignUp";
 import Fpassword from "./components/forgetpassword/Fpassword";
 import Header from "./components/Header";
 import Welcome from "./components/Welcome";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 
 function App() {
   const isAuthenticated=useSelector(state=>state.auth.isAuthenticated);
+  const theme=useSelector(state=>state.premium.theme);
+  const mytheme=theme===true?"light":"dark";
+  useEffect(() => {
+    document.body.className = mytheme;
+}, [mytheme]);
   return (
     <Fragment>
       <Router>

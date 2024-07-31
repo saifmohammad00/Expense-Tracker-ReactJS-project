@@ -1,21 +1,30 @@
 .exForm {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    margin: 10px auto;
+    /* display: flex;
+    flex-direction: column; */
+    width: 90%;
+    height: 5rem;
+    margin: 10px 10px;
+    padding: 50px;
+    text-align: center;
     align-items: center;
+    justify-content: space-between;
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5);
 }
 
 .exForm input {
     width: 200px;
     height: 20px;
-    margin-bottom: 10px;
+    margin-right: 20px;
     border-radius: 10px;
     padding: 8px;
 }
-
-.exForm button {
+.exForm button{
+    margin-left: 20px;
+    margin-right: 0px;
+}
+.exForm button,
+.cont h1 button,
+.list button {
     margin-bottom: 10px;
     width: 200px;
     height: 40px;
@@ -32,4 +41,11 @@
 }
 .list span{
     margin-right: 10px;
+}
+.list div{
+    display: flex;
+    background-color: #8e9297;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
 }

@@ -31,3 +31,6 @@
     display: flex;
     justify-content: space-between;
 }
+.bheader{
+    margin-top: 100px;
+}
