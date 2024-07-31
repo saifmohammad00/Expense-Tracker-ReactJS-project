@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import classes from "./Welcome.module.css"
-import { useNavigate } from "react-router-dom";
 import DailyExpenses from "./DailyExpenses";
-const apiKey="";
-const Welcome = (props) => {
+import { useSelector } from "react-redux";
+
+const apiKey="AIzaSyD7EBeFD7Vp5n6hIroKGMhNEucCuq09vdA";
+
+const Welcome = () => {
+    const token=useSelector(state=>state.auth.token);
     const [isClicked, setIsClicked] = useState(false);
     const handleName = useRef();
     const handleUrl = useRef();
@@ -15,7 +18,7 @@ const Welcome = (props) => {
             const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:update?key=${apiKey}`, {
                 method: "POST",
                 body: JSON.stringify({
-                    idToken: props.newToken,
+                    idToken: token,
                     displayName: handleName.current.value,
                     photoUrl: handleUrl.current.value,
                     returnSecureToken: true,
@@ -35,13 +38,13 @@ const Welcome = (props) => {
         }
     }
     useEffect(() => {
-        if (isClicked && props.newToken) {
+        if (isClicked && token) {
             async function getData() {
                 try {
                     const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${apiKey}`, {
                         method: "POST",
                         body: JSON.stringify({
-                            idToken: props.newToken,
+                            idToken: token,
                         }),
                         headers: {
                             'Content-Type': 'application/json',
@@ -56,14 +59,14 @@ const Welcome = (props) => {
             }
             getData();
         }
-    }, [isClicked,props.newToken])
+    }, [isClicked,token])
     const handleVerify = async () => {
         try {
             const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${apiKey}`, {
                 method: "POST",
                 body: JSON.stringify({
                     requestType: "VERIFY_EMAIL",
-                    idToken: props.newToken,
+                    idToken: token,
                 }),
                 headers: {
                     'Content-Type': 'application/json',
@@ -75,20 +78,15 @@ const Welcome = (props) => {
             console.log(error);
         }
     }
-    const Navigate = useNavigate();
-    const handleLogout = (e) => {
-        props.settkn(null);
-        Navigate('/');
-    }
+    
     return <>
         {!isClicked && <div>
             <div className={classes.welcome}>
                 <h1>Welcome to Expense Tracker!!!</h1>
                 <p>Your profile is incomplete <button onClick={handleButton}>complete now</button></p>
+                <button onClick={handleVerify} type="button">Verify Email Id</button>
             </div>
-            <button type="button" onClick={handleLogout} >Logout</button>
             <hr />
-            <button onClick={handleVerify} type="button">Verify Email Id</button>
             <DailyExpenses/>
         </div>}
         {isClicked && <div>

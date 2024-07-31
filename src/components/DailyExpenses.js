@@ -1,8 +1,11 @@
-import { eventWrapper } from "@testing-library/user-event/dist/utils";
+import { useDispatch, useSelector } from "react-redux";
+import { expenseActions } from "../store/expense";
 import classes from "./DailyExpenses.module.css";
 import { useEffect, useRef, useState } from "react";
 
 const DailyExpenses = () => {
+    const dispatch=useDispatch();
+    const totalExpense=useSelector(state=>state.expense.expense);
     const enteredAmount = useRef();
     const enteredDes = useRef();
     const enteredCaterogy = useRef();
@@ -25,6 +28,9 @@ const DailyExpenses = () => {
                     });
                 }
                 setList(loadedExpenses);
+                for(const expense of loadedExpenses){
+                    dispatch(expenseActions.add(+expense.amount));
+                }
             }catch(error){
                  console.log(error.message);
             }
@@ -51,6 +57,7 @@ const DailyExpenses = () => {
             }
             const data=await res.json();
             setList((prev) => [...prev, {id:data.name,...newExpense}]);
+            dispatch(expenseActions.add(+newExpense.amount));
             enteredAmount.current.value = "";
             enteredDes.current.value = "";
             enteredCaterogy.current.value = "";
@@ -58,15 +65,16 @@ const DailyExpenses = () => {
             console.log(error.message);
         }
     };
-    const handleDelete=async(id)=>{
+    const handleDelete=async(item)=>{
           try{
-            const res=await fetch(`https://reactdemoproject-dafd3-default-rtdb.asia-southeast1.firebasedatabase.app/Expenses/${id}.json`,{
+            const res=await fetch(`https://reactdemoproject-dafd3-default-rtdb.asia-southeast1.firebasedatabase.app/Expenses/${item.id}.json`,{
                 method:"DELETE",
               })
               if(!res.ok){
                 throw new Error("failed to delete expense");
               }
-              setList((prev)=>prev.filter(expense=>expense.id!==id));
+              dispatch(expenseActions.remove(+item.amount));
+              setList((prev)=>prev.filter(expense=>expense.id!==item.id));
               console.log("Expense deleted successfully")
 
           }catch(error){
@@ -95,6 +103,8 @@ const DailyExpenses = () => {
              if(!res.ok){
                 throw new Error("failed to edit expense");
              }
+             dispatch(expenseActions.remove(+editingExpense.amount));
+             dispatch(expenseActions.add(+updatedExpense.amount));
              setList((prev)=>prev.map(expense=>expense.id===editingExpense.id?{id:expense.id,...updatedExpense}:expense));
              setEditingExpense(null);
              enteredAmount.current.value="";
@@ -116,7 +126,7 @@ const DailyExpenses = () => {
             <span>{item.description} -</span>
             <span>{item.category}</span>
             <span><button type="button" onClick={()=>handleEdit(item)}>Edit</button></span>
-            <span><button type="button" onClick={()=>handleDelete(item.id)}>Delete</button></span>
+            <span><button type="button" onClick={()=>handleDelete(item)}>Delete</button></span>
         </li>
     })
     return <>
@@ -142,6 +152,7 @@ const DailyExpenses = () => {
             <ul>
                 {List}
             </ul>
+            <h1>Total Expense: ${totalExpense}</h1>
         </div>
     </>
 }

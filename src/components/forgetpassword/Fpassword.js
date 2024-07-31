@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import classes from "./Fpassword.module.css"
 import { useRef } from "react";
-import Header from "../Header";
 const apiKey="";
 const Fpassword=()=>{
     const enteredEmail=useRef();
@@ -23,14 +22,11 @@ const Fpassword=()=>{
             console.log(error);
          }
     }
-    return <>
-    <Header/>
-    <div className={classes.fpassword}>
+    return <div className={classes.fpassword}>
         <label>Enter the email with which you have registered</label>
         <input type="email" ref={enteredEmail}/>
         <button type="button" onClick={handleFpass}>Send Link</button>
         <Link to="/">Already a user? Login</Link>
     </div>
-    </>
 }
 export default Fpassword;

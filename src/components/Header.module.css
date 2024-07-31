@@ -1,8 +1,19 @@
 .header{
     background-color: black;
     color: white;
-    text-align: center;
-    margin-top: 0px;
-    padding-top: 20px;
-    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header h1{
+    width:60%;
+    text-align: right;
+}
+.header button{
+    margin-right: 10px;
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #19dde7;
+    cursor: pointer;
 }
