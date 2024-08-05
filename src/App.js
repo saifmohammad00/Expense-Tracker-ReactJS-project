@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 function App() {
   const isAuthenticated=useSelector(state=>state.auth.isAuthenticated);
   const theme=useSelector(state=>state.premium.theme);
-  const mytheme=theme===true?"light":"dark";
+  const mytheme=theme?"dark":"light";
   useEffect(() => {
     document.body.className = mytheme;
 }, [mytheme]);

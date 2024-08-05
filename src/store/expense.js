@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { act } from "react";
 
 const initialExpenseState={expense:0}
 const expenseSlice=createSlice({

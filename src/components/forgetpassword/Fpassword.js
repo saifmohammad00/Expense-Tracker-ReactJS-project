@@ -17,7 +17,9 @@ const Fpassword=()=>{
                     'Content-Type':'application/json'
                 }
              })
-             const data=await res.json();
+             if(!res.ok){
+                throw new Error("failed to reset password");
+             }
          }catch(error){
             console.log(error);
          }

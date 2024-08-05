@@ -1,10 +1,11 @@
+import React from "react";
 import { useRef, useState } from "react";
 import classes from "./SignUp.module.css";
 import { Link } from "react-router-dom";
 import { authActions } from "../store/auth";
 import { useDispatch } from "react-redux";
 
-const apiKey = "AIzaSyD7EBeFD7Vp5n6hIroKGMhNEucCuq09vdA";
+const apiKey = "";
 
 const SignUp = () => {
     const dispatch=useDispatch();
@@ -58,7 +59,7 @@ const SignUp = () => {
 
     }
     return <form className={classes.sign} onSubmit={handleSubmit}>
-            <h1>Sign Up</h1>
+            <h1>{isLogged ? "Login":"Sign Up"}</h1>
             <input type="email" id="email" placeholder="Email" ref={handleEmail} required />
             <input type="password" id="pass" placeholder="Password" ref={handlePass} required />
             {!isLogged && <input type="password" id="cpass" placeholder="Confirm Password" ref={handleCpass} required />}
