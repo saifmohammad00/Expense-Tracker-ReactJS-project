@@ -15,9 +15,10 @@
 }
 
 .contact button,
-.welcome button{
+.welcome button,
+.goback button{
     margin-bottom: 10px;
-    width: 200px;
+    width: 170px;
     height: 40px;
     border-radius: 10px;
     background-color: #19dde7;
@@ -33,4 +34,8 @@
 }
 .bheader{
     margin-top: 100px;
+}
+.goback{
+    display: flex;
+    justify-content: space-between;
 }

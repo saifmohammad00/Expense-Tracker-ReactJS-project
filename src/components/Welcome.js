@@ -3,10 +3,10 @@ import classes from "./Welcome.module.css"
 import DailyExpenses from "./DailyExpenses";
 import { useSelector } from "react-redux";
 
-const apiKey="";
+const apiKey = "AIzaSyC1Ap0yY1AOriDhcFmk_dR349SmioAS8Ak";
 
 const Welcome = () => {
-    const token=useSelector(state=>state.auth.token);
+    const token = useSelector(state => state.auth.token);
     const [isClicked, setIsClicked] = useState(false);
     const handleName = useRef();
     const handleUrl = useRef();
@@ -30,9 +30,6 @@ const Welcome = () => {
             if (!res.ok) {
                 throw new Error(`HTTP error! Status: ${res.status}`);
             }
-
-            const data = await res.json();
-            console.log(data);
         } catch (error) {
             console.log(error)
         }
@@ -59,7 +56,7 @@ const Welcome = () => {
             }
             getData();
         }
-    }, [isClicked,token])
+    }, [isClicked, token])
     const handleVerify = async () => {
         try {
             const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=${apiKey}`, {
@@ -72,25 +69,33 @@ const Welcome = () => {
                     'Content-Type': 'application/json',
                 }
             })
-            const data = await res.json();
-            console.log(data);
+            if(!res.ok){
+                throw new Error("failed to verify");
+            }
+            alert("Sent verification link")
         } catch (error) {
             console.log(error);
         }
     }
-    
+    const handleBack = () => {
+        setIsClicked(false);
+    }
+
     return <div className={classes.bheader}>
         {!isClicked && <div>
             <div className={classes.welcome}>
                 <h1>Welcome to Expense Tracker!!!</h1>
-                <p>Your profile is incomplete <button onClick={handleButton}>complete now</button></p>
+                <p><button onClick={handleButton} type="button">Your profile is incomplete. Complete now</button></p>
                 <p><button onClick={handleVerify} type="button">Verify Email Id</button></p>
             </div>
             <hr />
-            <DailyExpenses/>
+            <DailyExpenses />
         </div>}
         {isClicked && <div>
-            <h1>Winners never quit,Quitters never win.</h1>
+            <div className={classes.goback}>
+                <h1>Winners never quit,Quitters never win.</h1>
+                <button onClick={handleBack}>Go Back</button>
+            </div>
             <hr />
             <h1>Contact Details</h1>
             <form className={classes.contact}>

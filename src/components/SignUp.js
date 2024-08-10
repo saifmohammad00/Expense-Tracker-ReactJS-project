@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { authActions } from "../store/auth";
 import { useDispatch } from "react-redux";
 
-const apiKey = "";
+const apiKey = "AIzaSyC1Ap0yY1AOriDhcFmk_dR349SmioAS8Ak";
 
 const SignUp = () => {
     const dispatch=useDispatch();
