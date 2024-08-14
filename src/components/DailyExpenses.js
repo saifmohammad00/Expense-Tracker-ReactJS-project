@@ -15,7 +15,7 @@ const DailyExpenses = () => {
     useEffect(() => {
         const fetchExpenses = async () => {
             try {
-                const res = await fetch(`https://reactdemo-909dc-default-rtdb.asia-southeast1.firebasedatabase.app//Expenses.json`);
+                const res = await fetch(`https://reactdemo-62593-default-rtdb.asia-southeast1.firebasedatabase.app/Expenses.json`);
                 if (!res.ok) {
                     throw new Error("failed to get expenses")
                 }
@@ -47,7 +47,7 @@ const DailyExpenses = () => {
             category: enteredCaterogy.current.value,
         }
         try {
-            const res = await fetch(`https://reactdemo-909dc-default-rtdb.asia-southeast1.firebasedatabase.app//Expenses.json`, {
+            const res = await fetch(`https://reactdemo-62593-default-rtdb.asia-southeast1.firebasedatabase.app/Expenses.json`, {
                 method: 'POST',
                 body: JSON.stringify(newExpense),
                 headers: {
@@ -69,7 +69,7 @@ const DailyExpenses = () => {
     };
     const handleDelete = async (item) => {
         try {
-            const res = await fetch(`https://reactdemo-909dc-default-rtdb.asia-southeast1.firebasedatabase.app/Expenses/${item.id}.json`, {
+            const res = await fetch(`https://reactdemo-62593-default-rtdb.asia-southeast1.firebasedatabase.app/Expenses/${item.id}.json`, {
                 method: "DELETE",
             })
             if (!res.ok) {
@@ -95,7 +95,7 @@ const DailyExpenses = () => {
             category: enteredCaterogy.current.value,
         }
         try {
-            const res = await fetch(`https://reactdemo-909dc-default-rtdb.asia-southeast1.firebasedatabase.app/Expenses/${editingExpense.id}.json`, {
+            const res = await fetch(`https://reactdemo-62593-default-rtdb.asia-southeast1.firebasedatabase.app/Expenses/${editingExpense.id}.json`, {
                 method: "PUT",
                 body: JSON.stringify(updatedExpense),
                 headers: {
@@ -155,7 +155,7 @@ const DailyExpenses = () => {
         dispatch(premiumActions.prem(true));
     }
     useEffect(() => {
-        if (totalExpense < 1000) {
+        if (totalExpense < 10000) {
             dispatch(premiumActions.prem(false));
         }
     }, [totalExpense, dispatch]);
@@ -185,7 +185,7 @@ const DailyExpenses = () => {
                 {List}
             </ul>
             <h1>Total Expense: ${totalExpense}
-            {totalExpense>=1000 && <button onClick={premiumHandle}>Activate Premium</button>}
+            {totalExpense>=10000 && <button onClick={premiumHandle}>Activate Premium</button>}
             {ispremium && <button onClick={downloadCSV}>Download File</button>}
             </h1>
         </div>

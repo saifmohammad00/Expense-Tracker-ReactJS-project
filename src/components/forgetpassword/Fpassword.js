@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import classes from "./Fpassword.module.css"
 import { useRef } from "react";
-const apiKey="AIzaSyC1Ap0yY1AOriDhcFmk_dR349SmioAS8Ak";
+const apiKey="AIzaSyBhgtt13X-XTMRGPBIyOrHLXjaBhMyWnAo";
+
 const Fpassword=()=>{
     const enteredEmail=useRef();
     const handleFpass=async(event)=>{
@@ -20,6 +21,8 @@ const Fpassword=()=>{
              if(!res.ok){
                 throw new Error("failed to reset password");
              }
+             alert("Link is sent");
+             enteredEmail.current.value="";
          }catch(error){
             console.log(error);
          }

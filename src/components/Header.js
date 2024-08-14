@@ -22,7 +22,7 @@ const Header = () => {
     }
     return <header className={classes.header}>
         <h1>Expense Traker</h1>
-        {(ispremium && totalExpense>=1000 && isAuthenticated) && <button type="button" onClick={handleTheme} >{newTheme ? "Switch to dark theme":"Switch to light theme"}</button>}
+        {(ispremium && totalExpense>=10000 && isAuthenticated) && <button type="button" onClick={handleTheme} >{!newTheme ? "Switch to dark theme":"Switch to light theme"}</button>}
         {isAuthenticated && <button type="button" onClick={handleLogout} >Logout</button>}
     </header>
 }

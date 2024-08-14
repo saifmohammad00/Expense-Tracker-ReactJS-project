@@ -5,7 +5,7 @@ const premiumSlice=createSlice({
     name:"premium",
     initialState:initialPremiumState,
     reducers:{
-        change(state){
+        change(state){ 
           state.theme=!state.theme;
         },
         prem(state,action){
