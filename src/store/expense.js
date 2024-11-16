@@ -6,8 +6,6 @@ const expenseSlice=createSlice({
     initialState:initialExpenseState,
     reducers:{
         add(state,action){
-          console.log(action.payload);
-          console.log(typeof(action.payload));
           state.expense=state.expense+action.payload;
         },
         remove(state,action){

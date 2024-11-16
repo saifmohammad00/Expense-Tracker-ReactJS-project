@@ -4,6 +4,8 @@ import classes from "./DailyExpenses.module.css";
 import { useEffect, useRef, useState } from "react";
 import { premiumActions } from "../store/theme";
 
+const url='https://react-authentication-e719f-default-rtdb.firebaseio.com/';
+
 const DailyExpenses = () => {
     const dispatch = useDispatch();
     const totalExpense = useSelector(state => state.expense.expense);
@@ -15,7 +17,7 @@ const DailyExpenses = () => {
     useEffect(() => {
         const fetchExpenses = async () => {
             try {
-                const res = await fetch(`https://reactdemo-62593-default-rtdb.asia-southeast1.firebasedatabase.app/Expenses.json`);
+                const res = await fetch(`${url}/Expenses.json`);
                 if (!res.ok) {
                     throw new Error("failed to get expenses")
                 }
@@ -47,7 +49,7 @@ const DailyExpenses = () => {
             category: enteredCaterogy.current.value,
         }
         try {
-            const res = await fetch(`https://reactdemo-62593-default-rtdb.asia-southeast1.firebasedatabase.app/Expenses.json`, {
+            const res = await fetch(`${url}/Expenses.json`, {
                 method: 'POST',
                 body: JSON.stringify(newExpense),
                 headers: {
@@ -69,7 +71,7 @@ const DailyExpenses = () => {
     };
     const handleDelete = async (item) => {
         try {
-            const res = await fetch(`https://reactdemo-62593-default-rtdb.asia-southeast1.firebasedatabase.app/Expenses/${item.id}.json`, {
+            const res = await fetch(`${url}/Expenses/${item.id}.json`, {
                 method: "DELETE",
             })
             if (!res.ok) {
@@ -95,7 +97,7 @@ const DailyExpenses = () => {
             category: enteredCaterogy.current.value,
         }
         try {
-            const res = await fetch(`https://reactdemo-62593-default-rtdb.asia-southeast1.firebasedatabase.app/Expenses/${editingExpense.id}.json`, {
+            const res = await fetch(`${url}/Expenses/${editingExpense.id}.json`, {
                 method: "PUT",
                 body: JSON.stringify(updatedExpense),
                 headers: {
