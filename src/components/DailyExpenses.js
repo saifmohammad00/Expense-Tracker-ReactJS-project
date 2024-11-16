@@ -4,7 +4,7 @@ import classes from "./DailyExpenses.module.css";
 import { useEffect, useRef, useState } from "react";
 import { premiumActions } from "../store/theme";
 
-const url='https://react-authentication-757df-default-rtdb.firebaseio.com/';
+const url='https://react-authentication-32134-default-rtdb.firebaseio.com/';
 
 const DailyExpenses = () => {
     const dispatch = useDispatch();

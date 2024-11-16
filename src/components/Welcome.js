@@ -3,7 +3,7 @@ import classes from "./Welcome.module.css"
 import DailyExpenses from "./DailyExpenses";
 import { useSelector } from "react-redux";
 
-const apiKey = "AIzaSyCE4a2RWrR6tFSmSAOFkcLQ94bYu5ckNn0";
+const apiKey = "";
 
 const Welcome = () => {
     const token = useSelector(state => state.auth.token);
